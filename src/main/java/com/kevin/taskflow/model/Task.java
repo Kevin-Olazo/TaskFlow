@@ -1,6 +1,7 @@
 package com.kevin.taskflow.model;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.UUID;
 
 public class Task {
@@ -70,6 +71,25 @@ public class Task {
 
     @Override
     public String toString() {
-        return "Task{id=" + id + ", title=" + title + " ,description=" + description + ", completed=" + isCompleted + ", created:" + createdDate +"}";
+        return "Task{id=" + id + ", title=" + title + " ,description=" + description + ", completed=" + isCompleted + ", created:" + createdDate + "}";
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+
+        if (this == obj) {
+            return true;
+        }
+
+        Task task = (Task) obj;
+
+        if (Objects.equals(this.getId(), task.getId())) {
+            return true;
+        }
+
+        return false;
     }
 }
