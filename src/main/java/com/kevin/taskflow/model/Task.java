@@ -76,20 +76,16 @@ public class Task {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj == null || getClass() != obj.getClass()) {
-            return false;
-        }
-
         if (this == obj) {
             return true;
         }
 
-        Task task = (Task) obj;
-
-        if (Objects.equals(this.getId(), task.getId())) {
-            return true;
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
         }
 
-        return false;
+        Task task = (Task) obj;
+
+        return Objects.equals(this.getId(), task.getId());
     }
 }
