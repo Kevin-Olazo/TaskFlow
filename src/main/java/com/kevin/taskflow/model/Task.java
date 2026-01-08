@@ -13,17 +13,21 @@ public class Task {
     private LocalDateTime createdDate;
 
     // Constructor
-    public Task(String title, String description) {
-        if (title == null || title.isEmpty()) {
-            throw new IllegalArgumentException("Error. Enter a valid title");
-        }
-        this.title = title;
+    public Task(String id, String title, String description) {
+        setTitle(title);
         this.description = description;
-
-        this.id = UUID.randomUUID().toString();
+        this.id = id;
         this.isCompleted = false;
         this.createdDate = LocalDateTime.now();
 
+    }
+
+    public Task(String id, String title, String description, boolean isCompleted, LocalDateTime createdDate) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.isCompleted = isCompleted;
+        this.createdDate = createdDate;
     }
 
     public void markAsComplete() {
@@ -37,7 +41,7 @@ public class Task {
     // SETTERS
 
     public void setTitle(String title) {
-        if (title == null || title.isEmpty()) {
+        if (title == null || title.trim().isEmpty()) {
             throw new IllegalArgumentException("Error. Enter a valid title");
         }
         this.title = title;
@@ -87,5 +91,10 @@ public class Task {
         Task task = (Task) obj;
 
         return Objects.equals(this.getId(), task.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return this.getId().hashCode();
     }
 }
